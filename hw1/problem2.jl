@@ -58,4 +58,5 @@ end
 v = calc_attractor_matrix!()
 
 using Plots
-plot(2.9:0.001:4, v, legend=false)
+x = plot(2.9:0.001:4, v, legend=false)
+savefig(x, "plot_2.png")
