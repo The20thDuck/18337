@@ -60,3 +60,31 @@ v = calc_attractor_matrix!()
 using Plots
 x = plot(2.9:0.001:4, v, legend=false)
 savefig(x, "plot_2.png")
+
+const _u_cache = Matrix{typeof(start_val)}(undef, length(r_vec), num_attract)
+
+Threads.nthreads()
+
+function calc_attractor_matrix!(start_val = start_val, r_vec = r_vec, num_attract=num_attract, warmup=warmup)
+
+    @inbounds for j in 1:length(r_vec)
+        r0 = r_vec[j]
+        u0 = start_val
+        for i in 1:warmup+1
+            u0 = r0*u0*(1-u0)
+        end
+        _u_cache[j, 1] = r0*u0*(1-u0)
+    end
+    @inbounds for i in 1:num_attract - 1
+        _u_cache[:, i+1] = r_vec .* @view(_u_cache[:, i]) .* (1 .- @view(_u_cache[:, i]))
+    end
+end
+
+using BenchmarkTools
+calc_attractor_matrix!()
+
+using Plots
+x = plot(2.9:0.001:4, _u_cache, legend=false)
+
+
+@btime calc_attractor_matrix!()
