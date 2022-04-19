@@ -9,17 +9,56 @@
 ## Classes are not taped, but we will follow closely Chris Rackauckas' videos.  See [link](https://github.com/SciML/SciMLBook).
 
 ## Announcement:
-[HW1](https://rawcdn.githack.com/mitmath/18337/90ace4bfbee6ffa4415b38384d7dccd5865ea85d/hw1/hw1.html) is out, though we haven't covered  the material yet.  It will be due
-in two weeks in case you want a head start.
+[HW1](https://rawcdn.githack.com/mitmath/18337/f6ded42513499741ca0906b9978f1562a402dc21/hw1/hw1.html) is out. Please also see the [Hints and Tricks](hw1/hints.md).
+
+ HW: The remaining parts of HW1 (Problem 3 parts 3-5), due  Tuesday 2/22.
+
+ HW: Problem 1 of [Chris R's HW2](https://book.sciml.ai/homework/02/) due March 14th on canvas. [Hints and Tricks](hw2/hints2.md)
+
+ Project Proposal due March 30
+ 
+ HW: April 4th 2nd half of [Chris R's HW2](https://book.sciml.ai/homework/02/)
+ where the plot that he refers to is on page 318, Fig 15-10 of [ High Performance Embedded Computing Handbook chapter 15](https://github.com/mitmath/18337/blob/spring21/lecture12/PerformanceMetricsSoftwareArchitecture.pdf), perhaps
+ also see Eq. (15.6) on the page before, and see if that works out on your computer.
+ You may try to do this on your own machine (windows users should probably
+ install the [windows  subsystem for linux](https://docs.microsoft.com/en-us/windows/wsl/about).  Others might try using [juliahub](https://juliahub.com/lp/) (see signup on piazza) or you might try [supercloud](https://supercloud.mit.edu/).
+
+ HW: April 11th first half of Chris R's HW3
+
+Final Projects due: May 9
+
 
 # Lectures at a Glance
 |#|Day| Date |  Topic | [SciML](https://github.com/SciML/SciMLBook) lecture |  |
 |-|-|------|------|-----|--|
-|1|M|1/31| Intro to Julia.  My Two Favorite Notebooks. | 1+extra |   [[notebook1]](https://github.com/mitmath/18337/blob/master/lecture1/Julia%20is%20fast.ipynb), [[notebook2]](https://github.com/mitmath/18337/blob/master/lecture1/AutoDiff.ipynb), [[autodiff video]](https://www.youtube.com/watch?v=vAp6nUMrKYg)
-|2|W|2/2| A Feel for the dream. Optimizing Serial Code. |extra+2 | [[pdf]](https://github.com/mitmath/18337/blob/master/lecture2/The%20Julia%20HPC%20dream%20-%20Jupyter%20Notebook.pdf),[[lecture notes]](https://book.sciml.ai/lecture2/optimizing),[[video]](https://www.youtube.com/watch?v=M2i7sSRcSIw)
-|3|M|2/7| Optimizing Serial Code. Dynamical Systems |2 + 4| [[lecture notes]](https://book.sciml.ai/lecture4/dynamical_systems.html), [[video]](https://www.youtube.com/watch?v=GhBARuHEydM)
-|4|W|2/9| Deep Learning as Function Approximation. Physics informed Neural Networks | 3| [[lecture notes]](https://book.sciml.ai/lecture3/sciml.html)  [[video 1]](https://youtu.be/C3vf9ZFYbjI)      [[video2]](https://youtu.be/hKHl68Fdpq4) |
+|1|M|1/31| Intro to Julia.  My Two Favorite Notebooks. | [1][1]+extra |   [[notebook1]](https://github.com/mitmath/18337/blob/master/lecture1/Julia%20is%20fast.ipynb), [[notebook2]](https://github.com/mitmath/18337/blob/master/lecture1/AutoDiff.ipynb), [[autodiff video]](https://www.youtube.com/watch?v=vAp6nUMrKYg)
+|2|W|2/2| A Feel for the dream. Optimizing Serial Code. |extra+[2][2] | [[pdf]](https://github.com/mitmath/18337/blob/master/lecture2/The%20Julia%20HPC%20dream%20-%20Jupyter%20Notebook.pdf),[[video]](https://www.youtube.com/watch?v=M2i7sSRcSIw)
+|3|M|2/7| Optimizing Serial Code. Dynamical Systems |[2][2] + [4][4]|  [[video]](https://www.youtube.com/watch?v=GhBARuHEydM)
+|4|W|2/9| Deep Learning as Function Approximation. Physics informed Neural Networks | [3][3]|   [[video 1]](https://youtu.be/C3vf9ZFYbjI)      [[video2]](https://youtu.be/hKHl68Fdpq4) 
+|5|M|2/14| Multithreading, Static and Dynamic Scheduling |[5][5]|  [[video]](https://www.youtube.com/watch?v=eca6kcFntiE)|
+|6|W|2/16| Models of Parallelism |[6][6]|  [[video]](https://www.youtube.com/watch?v=EP5VWwPIews)
+|7|T|2/22| Siam PP 2022 Lecture| | [Slides](https://github.com/mitmath/18337/blob/master/lecture%207/siampp2022.pdf)
+|8|W|2/23| ODEs |[7][7]| [[video 1]](https://www.youtube.com/watch?v=riAbPZy9gFc),[[video2]](https://www.youtube.com/watch?v=HMmOk9GIhsw)
+|9|M|2/28| Automatic Differentiation | [8][8]| [[video]](https://www.youtube.com/watch?v=zHPXGBiTM5A), [[Eig&SVD derivatives notebooks]](https://github.com/mitmath/18337/tree/master/lecture9), [[2022 IAP Class Matrix Calculus]](https://github.com/mitmath/matrixcalc)
+|10|W|3/2| MPI |  |  [Slides](https://github.com/SciML/SciMLBook/blob/spring21/lecture12/MPI.jl.pdf),  [[video, Lauren Milichen]](https://www.youtube.com/watch?v=LCIJj0czofo),[[Performance Metrics]](https://github.com/mitmath/18337/blob/spring21/lecture12/PerformanceMetricsSoftwareArchitecture.pdf) see p317,15.6
+|11|M|3/7| Stiff Systems | [9][9]| 
+|12|W|3/9|   Forward Mode AD with matrices, Reverse Mode AD Intro |[10][10] |
+|13|W|3/14|  Reverse Mode AD |[11][11] | 
+|14|W|3/16|  GPU Computing |[13][13] |
+|15|M|3/28|  More GPU Computing |
 
+[1]:https://book.sciml.ai/notes/01/
+[2]:https://book.sciml.ai/notes/02/
+[3]:https://book.sciml.ai/notes/03/
+[4]:https://book.sciml.ai/notes/04/
+[5]:https://book.sciml.ai/notes/05/
+[6]:https://book.sciml.ai/notes/06/
+[7]:https://book.sciml.ai/notes/07/
+[8]:https://book.sciml.ai/notes/08/
+[9]:https://book.sciml.ai/notes/09/
+[10]:https://book.sciml.ai/notes/10/
+[11]:https://book.sciml.ai/notes/11/
+[13]:https://book.sciml.ai/notes/13/
 
 # Lecture Summaries and Handouts
 
@@ -690,3 +729,9 @@ showcases that uses higher level information can be helpful in UQ, and less
 local approaches may be necessary. We end by showcasing the Koopman operator
 as the adjoint of the pushforward of the uncertainty measure, and as an adjoint
 method it can give accelerated computations of uncertainty against cost functions.
+
+
+
+1+1
+
+
