@@ -14,7 +14,8 @@ function lotka_volterra_ode!(du, u, p, t)
 end
 
 prob = ODEProblem(lotka_volterra_ode!, [1.0, 1.0], (0.0, 10.0), [1.5, 1.0, 3.0, 1.0])
-@btime sol = solve(prob, DP5(), dense=false, adaptive=false, dt=1/4)
+sol = solve(prob, DP5(), dense=false, adaptive=false, dt=1/4)
+@btime solve(prob, DP5(), dense=false, adaptive=false, dt=1/4)
 plot(sol)
 
 # Implement Dormand Prince
@@ -70,8 +71,10 @@ k = zero(MMatrix{2, 6, Float64}) # store k's
 sol = Array{Float64}(undef, 2, time_steps)
 @btime run_dormand(lotka_volterra!, du, k, sol, u0, tspan, p)
 
-plot(0.0:0.25:10.0, transpose(sol))
+plt = plot(0.0:0.25:10.0, transpose(sol), title="Lotka Volterra", label = ["x" "y"])
 xlabel!("t")
+savefig(plt,"lotka_volterra.png")
+
 
 ### PART 2 ### Propagating Sensitivity
 
@@ -109,8 +112,9 @@ k = zeros(MMatrix{10, 6}) # store k's
 sol = Array{typeof(u0_s[1])}(undef, 10, time_steps)
 @btime run_dormand(lotka_volterra_sensitivity!, du, k, sol, u0_s, tspan, p)
 plot(transpose(sol[1:2, :]))
-plot(transpose(sol[3:10, :]))
-
+plt = plot(transpose(sol[3:10, :]), title="Derivatives of parameters", label=["dx/dα" "dx/dβ" "dx/dγ" "dx/dδ" "dy/dα" "dy/dβ" "dy/dγ" "dy/dδ"])
+xlabel!("t")
+savefig(plt, "param_deriv.png")
 
 ### PART 3 ### Using gradient descent to retrieve the true parameters
 
@@ -152,6 +156,7 @@ function grad_descent!(p_hat, data, p0, epochs, lr = 1e-5)
         if mod(epoch, round(epochs/20)) == 0
             loss = sum((x_hat .- x).^2 + (y_hat .- y).^2)/time_steps
             println("epoch: ", epoch, ", loss: ", loss)
+            losses[round(Int, epoch*20/epochs)] = loss
         end
 
         p_hat .-= lr *(dlx_dp .+ dly_dp)/time_steps
@@ -162,7 +167,13 @@ function grad_descent!(p_hat, data, p0, epochs, lr = 1e-5)
 end
 
 
+losses = Array{Float64}(undef, 20)
 
 p_hat = @MVector[0., 0., 0., 0.]
 @time grad_descent!(p_hat, sol, p0, 200000)
 println("True Params: ", p)
+
+plt = plot(losses, title="Loss", label="loss")
+xlabel!("Epoch (10k)")
+ylabel!("MSE Loss")
+savefig(plt, "loss.png")
